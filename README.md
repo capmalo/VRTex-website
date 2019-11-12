@@ -27,7 +27,7 @@ Feuille de route projet :
   2) Créer une base de données regroupant les propositions et le nombre de votes associé
   3) Ajout d'un formulaire de soumission de propositions
   4) Création d'un système de sessions et verrouillage du formulaire aux seuls inscrits
-  5) ....
+  5) Ajout du système de "vote" sur chaque publication ainsi que la possibilité d'ajouter des commentaires
 
 Objectifs du prototype initial :
 
@@ -36,4 +36,4 @@ Objectifs du prototype initial :
   2) Permettre aux visiteurs de voter (système +1 -1)
   3) Permettre aux visiteurs de soumettre des propositions
   
-  Ces objectifs peuvent être ammenés à s'étoffer en fonction de la vitesse d'avancement du projet
+  Ces objectifs peuvent être amenés à s'étoffer en fonction de la vitesse d'avancement du projet.
