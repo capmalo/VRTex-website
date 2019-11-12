@@ -9,7 +9,9 @@ Synthèse du sujet et analyse :
     Par exemple, l'utilisateur pourra choisir de voir les étapes du calcul du volume d'un cube. 
     Il verra alors le cube évoluer ainsi que la formule géométrique le tout dans un espace virtuel permettant des interactions basiques.
     
+   Le site à concevoir est une plateforme de vote attachée à ce projet. Il consiste en une solution proposant aux utilisateurs de voter pour les concepts mathématiques qu’ils voudraient voir implémentés dans l’application VRTex.
     
+   Chaque utilisateur pourra créer un compte et se connecter pour pouvoir voter pour les concepts qu’il choisira. Les concepts seront proposés par les administrateurs, disposant d’un compte spécifique autorisant la création et la suppression des concepts mathématiques. 
 
 Synthèse du travail de conception :
 
