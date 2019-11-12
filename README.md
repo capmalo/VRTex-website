@@ -15,6 +15,11 @@ Synthèse du sujet et analyse :
 
 Synthèse du travail de conception :
 
+- La connexion au site doit être sécurisée
+- Les concepts et les commentaires proposés par l’utilisateur doivent être vérifiés afin qu’ils ne nuisent pas à l’intégrité du site ou aux autres utilisateurs (sécurité des formulaires et des requêtes)
+- Les concepts et commentaires ne doivent pas comporter de propos diffamants, insultants ou dégradants (cette vérification se fera manuellement dans un premier temps, mais un système de signalement pourra être envisagé)
+
+
 Feuille de route projet :
 
   Nous allons procéder comme ceci :
