@@ -19,7 +19,6 @@ Synthèse du travail de conception :
 - Les concepts et les commentaires proposés par l’utilisateur doivent être vérifiés afin qu’ils ne nuisent pas à l’intégrité du site ou aux autres utilisateurs (sécurité des formulaires et des requêtes)
 - Les concepts et commentaires ne doivent pas comporter de propos diffamants, insultants ou dégradants (cette vérification se fera manuellement dans un premier temps, mais un système de signalement pourra être envisagé)
 
-
 Feuille de route projet :
 
   1) Mettre en place le design général du site (style de liste "reddit")
@@ -27,7 +26,6 @@ Feuille de route projet :
   3) Ajout d'un formulaire de soumission de propositions
   4) Création d'un système de sessions et de verrouillage du formulaire aux seuls inscrits
   5) Ajout du système de "vote" sur chaque publication ainsi que la possibilité d'ajouter des commentaires
-
 
 Objectifs du prototype initial :
 
