@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
   const user = await getUser(body.username, body.password)
   if (user) {
     req.session.userId = user._id
-    res.redirect(req.query.from)
+    if (req.query.from) { res.redirect(req.query.from) } else { res.redirect('/post/list') }
   } else { res.send('USER NOT EXIST') }
 })
 
