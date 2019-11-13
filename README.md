@@ -21,11 +21,11 @@ Synthèse du travail de conception :
 
 Feuille de route projet :
 
-  1) Mettre en place le design général du site (style de liste "reddit")
-  2) Créer une base de données regroupant les propositions et le nombre de votes associé
-  3) Ajout d'un formulaire de soumission de propositions
-  4) Création d'un système de sessions et de verrouillage du formulaire aux seuls inscrits
-  5) Ajout du système de "vote" sur chaque publication ainsi que la possibilité d'ajouter des commentaires
+  1) Mettre en place le design général du site (style de liste "reddit") - 12/11/2019
+  2) Créer une base de données regroupant les propositions et le nombre de votes associé - 19/11/2019
+  3) Ajout d'un formulaire de soumission de propositions - 19/11/2019
+  4) Création d'un système de sessions et de verrouillage du formulaire aux seuls inscrits - 26/11/2019
+  5) Ajout du système de "vote" sur chaque publication ainsi que la possibilité d'ajouter des commentaires 26/11/2019
 
 Objectifs du prototype initial :
 
