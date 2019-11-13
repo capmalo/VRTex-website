@@ -28,7 +28,6 @@ app.use(session({
 }))
 
 async function tokenToUserMiddleware (req, res, next) {
-  console.log(req.session)
   if (req.session && req.session.userId) {
     req.user = await User.findById(req.session.userId)
   }
@@ -37,21 +36,33 @@ async function tokenToUserMiddleware (req, res, next) {
 
 app.use(tokenToUserMiddleware)
 
+function onlyIfLoggedMiddleware (req, res, next) {
+  if (req.user) {
+    next()
+  } else {
+    res.redirect('/?from=' + req.originalUrl)
+  }
+}
+
 app.use('/user', users)
-app.use('/post', articles)
+app.use('/post', onlyIfLoggedMiddleware, articles)
 
 app.listen(3000, () => {
   // readCalendar()
 })
 
 app.get('/', (req, res) => {
-  if (req.session.userId) {
+  if (req.user) {
     res.status(401)
     res.send('you are already connected')
     return
   }
-
-  res.render('index')
+  console.log(req.query.from)
+  let from = ''
+  if (req.query.from) {
+    from = req.query.from
+  }
+  res.render('index', { from: from })
 })
 
 app.get('/register', (req, res) => {

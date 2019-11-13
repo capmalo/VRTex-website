@@ -2,11 +2,13 @@ const express = require('express')
 var router = express.Router()
 const Article = require('../models/article.model.js')
 
-async function createArticle (title, content) {
+async function createArticle (title, content, _writer) {
   try {
     const article = new Article({
+      _writer: _writer,
       title: title,
-      content: content
+      content: content,
+      date: new Date()
     })
     await article.save()
   } catch (err) {
@@ -15,21 +17,23 @@ async function createArticle (title, content) {
 }
 
 router.get('/new', (req, res) => {
-  if (req.user) {
-    res.render('newpost')
-  } else {
-    res.send('ACCESS DENIED')
-  }
+  res.render('newpost')
 })
 
-router.post('/new', (req, res) => {
-  if (req.user) {
-    const { body } = req
-    createArticle(body.post_title, body.post_content)
-    res.render('index')
-  } else {
-    res.send('ACCESS DENIED')
-  }
+router.get('/list', async (req, res) => {
+  const posts = await Article.find().sort({ date: 1 })
+  res.render('listposts', { posts: posts })
+})
+
+router.post('/new', async (req, res) => {
+  const { body } = req
+  await createArticle(body.post_title, body.post_content, req.user)
+  res.send('SAVED')
+})
+
+router.post('/newcom/:id', (req, res) => {
+  console.log(req.query.id)
+  res.send('YES')
 })
 
 module.exports = router

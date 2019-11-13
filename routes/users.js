@@ -32,9 +32,8 @@ router.post('/login', async (req, res) => {
   const user = await getUser(body.username, body.password)
   if (user) {
     req.session.userId = user._id
-    console.log(req.session)
-    res.send(req.session.userId)
-  } else { res.send('NOT FOUND') }
+    res.redirect(req.query.from)
+  } else { res.send('USER NOT EXIST') }
 })
 
 router.post('/register', (req, res) => {
