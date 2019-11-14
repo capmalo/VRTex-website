@@ -8,12 +8,14 @@ const User = require('./models/user.model.js')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+app.use(express.static(__dirname))
+
 const users = require('./routes/users.js')
 const articles = require('./routes/articles.js')
 
 // let calendar
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/calendarDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
+mongoose.connect('mongodb://localhost/VRtexDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
   if (error) console.log(error)
 
   console.log('connection successful')
@@ -53,18 +55,25 @@ app.listen(3000, () => {
 
 app.get('/', (req, res) => {
   if (req.user) {
-    res.status(401)
-    res.send('you are already connected')
+    res.redirect('/post/list')
     return
   }
-  console.log(req.query.from)
   let from = ''
+  let msg = ''
   if (req.query.from) {
     from = req.query.from
   }
-  res.render('index', { from: from })
+  if (req.query.msg) {
+    msg = req.query.msg
+  }
+  res.render('login', { from: from, msg: msg })
 })
 
 app.get('/register', (req, res) => {
-  res.render('register')
+  let msg = ''
+  if (req.query.msg) {
+    msg = req.query.msg
+  }
+  console.log(msg)
+  res.render('register', { msg: msg })
 })

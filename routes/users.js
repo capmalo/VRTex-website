@@ -32,8 +32,8 @@ router.post('/login', async (req, res) => {
   const user = await getUser(body.username, body.password)
   if (user) {
     req.session.userId = user._id
-    res.redirect(req.query.from)
-  } else { res.send('USER NOT EXIST') }
+    if (req.query.from) { res.redirect(req.query.from) } else { res.redirect('/post/list') }
+  } else { res.redirect('/?msg=Username or password incorrect, try again') }
 })
 
 router.post('/register', async (req, res) => {
@@ -41,13 +41,14 @@ router.post('/register', async (req, res) => {
   try {
     const user = await User.findOne({ username: body.username }).lean()
     var msg
-    if (user !== 'undefined') {
+    console.log(body)
+    if (user === null) {
       createUser(body.username, body.password)
-      msg = 'Votre compte a été créé avec succès ! Vous pouvez à présent vous connecter.'
-      res.render('index', { msg: msg })
+      msg = 'Your account have successfully been created ! you can now log in.'
+      res.redirect('/?msg=' + msg)
     } else {
-      msg = 'Pseudo indisponible :\'('
-      res.render('register', { msg: msg })
+      msg = 'Pseudo indisponible, veuillez réessayer'
+      res.redirect('/register?msg=' + msg)
     }
   } catch (err) {
     console.log(err)
