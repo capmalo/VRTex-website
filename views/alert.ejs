@@ -1,0 +1,10 @@
+<script>
+  $( document ).ready (() => {
+    <% if (typeof msg == 'undefined') {
+      var msg = ''
+    } %>
+    if (!('<%= msg %>' == '')) {
+      alert('<%= msg %>')
+    }
+  })
+</script>

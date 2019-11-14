@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Register</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/main.css">
+	</head>
+      <body class="text-center">
+          <form method="post" class="form-signin" action="/user/register" oninput='password2.setCustomValidity(password2.value != password.value ? "Passwords do not match." : "")'>
+            <img class="mb-4" src="./public/logo/logo.png" alt="" width="200">
+            <h1 class='h3 mb-3 font-weight-normal text-white'>PLEASE REGISTER</h1>
+              <div class="form-group">
+                <label class="text-white">Username</label>
+                <input
+                required
+                name="username"
+                id="username"
+                type="text"
+                class="form-control"
+              />
+                <label class="text-white">Password</label>
+                <input
+                required
+                name="password"
+                id="Password"
+                type="password"
+                class="form-control"
+              />
+
+              <label class="text-white">Confirm Password</label>
+              <input
+              required
+              name="password2"
+              id="Password2"
+              type="password"
+              class="form-control"
+            />
+                
+              </div>
+              <button type="submit" class="btn btn-danger">Log-in</button>
+              <br>
+              <a href="/">Already registered ? Click here to sign in</a>
+            </form>
+    </body>
+    <footer>
+      <script>
+        $( document ).ready (() => {
+          <% if (typeof msg == 'undefined') {
+            var msg = ''
+          } %>
+          if (!('<%= msg %>' == '')) {
+            alert('<%= msg %>')
+          }
+        })
+      </script>
+      
+    </footer>
+</html>

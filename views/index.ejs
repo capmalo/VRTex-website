@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>HOME</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+        <form method="post" action="/user/login?from=<%= from %>">
+            <div class="form-group">
+              <label>Username</label>
+              <input
+                required
+                name="username"
+                id="username"
+                type="text"
+                class="form-control"
+              />
+              <label>Password</label>
+              <input
+                required
+                name="password"
+                id="Password"
+                type="password"
+                class="form-control"
+              />
+              
+            </div>
+            <button type="submit" class="btn btn-primary">Log-in</button>
+            <a href="/register">or click here to register</a>
+          </form>
+    </body>
+</html>
