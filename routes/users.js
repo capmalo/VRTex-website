@@ -36,10 +36,22 @@ router.post('/login', async (req, res) => {
   } else { res.send('USER NOT EXIST') }
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   const { body } = req
-  createUser(body.username, body.password)
-  res.render('index')
+  try {
+    const user = await User.findOne({ username: body.username }).lean()
+    var msg
+    if (user !== 'undefined') {
+      createUser(body.username, body.password)
+      msg = 'Votre compte a été créé avec succès ! Vous pouvez à présent vous connecter.'
+      res.render('index', { msg: msg })
+    } else {
+      msg = 'Pseudo indisponible :\'('
+      res.render('register', { msg: msg })
+    }
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 router.get('/logout', (req, res) => {
