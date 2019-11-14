@@ -15,7 +15,7 @@ const articles = require('./routes/articles.js')
 
 // let calendar
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/calendarDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
+mongoose.connect('mongodb://localhost/VRtexDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
   if (error) console.log(error)
 
   console.log('connection successful')
@@ -59,12 +59,21 @@ app.get('/', (req, res) => {
     return
   }
   let from = ''
+  let msg = ''
   if (req.query.from) {
     from = req.query.from
   }
-  res.render('login', { from: from })
+  if (req.query.msg) {
+    msg = req.query.msg
+  }
+  res.render('login', { from: from, msg: msg })
 })
 
 app.get('/register', (req, res) => {
-  res.render('register')
+  let msg = ''
+  if (req.query.msg) {
+    msg = req.query.msg
+  }
+  console.log(msg)
+  res.render('register', { msg: msg })
 })

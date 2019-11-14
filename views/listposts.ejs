@@ -2,27 +2,40 @@
 <html>
 	<head>
         <title>Articles</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/css/main.css">
 	</head>
 
 	<body>
-        <% posts.forEach(function(post){ %>
-            <li id="post_<%= post.id %>">
-            <%= post.date %> | <%= post.title %> | <%= post.content %>
-            <form method="post" action="/post/newcom/<%= post.id %>">
-                <div class="form-group">
-                <label>Add a comment</label>
-                <input
-                    required
-                    name="comment"
-                    id="comment"
-                    type="textarea"
-                    class="form-control"
-                />
+        <div class="text-center">
+            <img class="icon" src="../public/logo/icon.png" alt="" width="120"/>
+            <h1 class='h3 mb-3 font-weight-normal text-white'>LATEST POSTS</h1>
+            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( CREATE A POST )</a>
+            <% posts.forEach(function(post){ %>
+            <hr>
+                <div class="text-white" id="post_<%= post.id %>">
+                    <h3 class='mb-3 font-weight-normal'><%= post.title %> <span class='post-date'> on <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
+                    
+                    <p><%= post.content %></p>
+                <form method="post" action="/post/newcom/<%= post.id %>">
+                    <div class="form-group">
+                    <label>Add a comment</label>
+                    <input
+                        required
+                        name="comment"
+                        id="comment"
+                        type="textarea"
+                        class="form-control"
+                    />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <br>
                 </div>
-                <button type="submit" class="btn btn-primary">Soumettre</button>
-            </form>
-            <br>
-            </li>
-          <% }); %>
+            <% }); %>
+        </div>
+            
     </body>
 </html>

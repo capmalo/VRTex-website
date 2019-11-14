@@ -3,15 +3,15 @@
 	<head>
         <title>HOME</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="./public/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="./public/css/signin.css">
+        <script src="../public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/css/main.css">
 	</head>
 
 	<body class="text-center">
         <form method="post" class="form-signin" action="/user/login?from=<%= from %>">
-          <img class="mb-4" src="./public/logo/logo.png" alt="" width="200">
-          <h1 class='h3 mb-3 font-weight-normal text-white'>PLEASE SIGN IN</h1>
+          <img class="mb-4" src="../public/logo/logo.png" alt="" width="200">
+          <h1 class='h3 mb-3 font-weight-normal text-white'>PLEASE LOG IN</h1>
             <div class="form-group">
               <label class="text-white">Username</label>
               <input
@@ -36,4 +36,17 @@
             <a href="/register">or click here to register</a>
           </form>
     </body>
+    <footer>
+      <script>
+        $( document ).ready (() => {
+          <% if (typeof msg == 'undefined') {
+            var msg = ''
+          } %>
+          if (!('<%= msg %>' == '')) {
+            alert('<%= msg %>')
+          }
+        })
+      </script>
+      
+    </footer>
 </html>
