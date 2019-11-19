@@ -26,7 +26,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(session({
   secret: 'keyboardcat',
-  name: 'sessId'
+  name: 'sessId',
+  resave: false,
+  saveUninitialized: false
 }))
 
 async function tokenToUserMiddleware (req, res, next) {
@@ -70,6 +72,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/register', (req, res) => {
+  if (req.user) {
+    res.redirect('/post/list')
+  }
   let msg = ''
   if (req.query.msg) {
     msg = req.query.msg

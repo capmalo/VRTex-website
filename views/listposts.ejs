@@ -19,18 +19,24 @@
                     <h3 class='mb-3 font-weight-normal'><%= post.title %> <span class='post-date'> on <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
                     
                     <p><%= post.content %></p>
-                <form method="post" action="/post/newcom/<%= post.id %>">
+
+                    <h4 class='mb-2 font-weight-normal'>Comments</h4>
+                    <% post.comments.forEach(function(comment){ %>
+                        <p><%= comment.content %></p>
+                    <% }); %>
+                <form method="post" action="/post/newcom?id=<%= post.id %>">
                     <div class="form-group">
                     <label>Add a comment</label>
                     <input
                         required
-                        name="comment"
-                        id="comment"
+                        name="content"
+                        id="content"
                         type="textarea"
                         class="form-control"
                     />
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+
                 </form>
                 <br>
                 </div>
