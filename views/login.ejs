@@ -1,7 +1,21 @@
+<!--
+
+=========================================================
+* VRTex - v1.0
+=========================================================
+
+* Original by VRTex team
+
+* Copyright 2019 VRTex team
+* Licensed under MIT (https://github.com/capmalo/VRTex-website/blob/master/LICENSE.md)
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-        <title>HOME</title>
+        <title>VRTex - Login</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="../public/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
@@ -20,23 +34,24 @@
                 id="username"
                 type="text"
                 class="form-control"
+                placeholder="I <3 VRTEX"
               />
-              <label class="text-white">Password</label>
+              <label class="text-white pwd-text">Password</label>
               <input
                 required
                 name="password"
                 id="Password"
                 type="password"
                 class="form-control"
+                placeholder="password"
               />
               
             </div>
-            <button type="submit" class="btn btn-danger">Log-in</button>
+            <button type="submit" class="btn btn-danger btn-reglog">Log-in</button>
             <br>
-            <a href="/register">or click here to register</a>
+            <a class="regloglink" href="/register">or click here to register</a>
           </form>
-    </body>
-    <footer>
+      <footer class="footer">
       <script>
         $( document ).ready (() => {
           <% if (typeof msg == 'undefined') {
@@ -47,6 +62,11 @@
           }
         })
       </script>
-      
-    </footer>
+      <div class="footer-content">
+        <p class="footer-text">&copy2019 VRTEX</p>
+        <p class="footer-text"> - </p>
+        <a class="footer-text licencelink" target="_blank" href="https://github.com/capmalo/VRTex-website/blob/dev/LICENSE.md">MIT Licence</a>
+      </div>
+    </footer>    
+  </body>
 </html>
