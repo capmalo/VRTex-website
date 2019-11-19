@@ -2,12 +2,16 @@
 <html>
 	<head>
         <title>Creer un article</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="../public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/css/main.css">
 	</head>
 
-	<body>
+	<body class="text-center">
         <form method="post" action="/post/new">
             <div class="form-group">
-              <label>Titre</label>
+              <label class="text-white">Titre</label>
               <input
                 required
                 name="post_title"
@@ -15,7 +19,7 @@
                 type="text"
                 class="form-control"
               />
-              <label>Description</label>
+              <label class="text-white">Description</label>
               <input
                 required
                 name="post_content"
@@ -25,7 +29,7 @@
               />
               
             </div>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <button type="submit" class="btn btn-danger">Envoyer</button>
           </form>
     </body>
 </html>
