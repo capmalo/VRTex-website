@@ -24,9 +24,9 @@
       <body class="text-center">
           <form method="post" class="form-signin" action="/user/register" oninput='password2.setCustomValidity(password2.value != password.value ? "Passwords do not match." : "")'>
             <img class="mb-4" src="../public/logo/logo.png" alt="" width="200">
-            <h1 class='h3 mb-3 font-weight-normal text-white'>Merci de vous inscrire</h1>
+            <h1 class='h3 mb-3 font-weight-normal text-white'>Please register</h1>
               <div class="form-group">
-                <label class="text-white">Pseudo</label>
+                <label class="text-white">Username</label>
                 <input
                 required
                 name="username"
@@ -35,7 +35,7 @@
                 class="form-control"
                 placeholder="VRTEX"
               />
-                <label class="text-white pwd-text">Mot de passe</label>
+                <label class="text-white pwd-text">Password</label>
                 <input
                 required
                 name="password"
@@ -45,7 +45,7 @@
                 placeholder="Please use a secured one"
               />
 
-              <label class="text-white">Confirmez le mot de passe</label>
+              <label class="text-white">Confirm password</label>
               <input
               required
               name="password2"
@@ -58,7 +58,7 @@
               </div>
               <button type="submit" class="btn btn-danger btn-reglog">Inscription</button>
               <br>
-              <a class="regloglink" href="/login">Déjà inscrit ? Cliquez ici pour vous connecter</a>
+              <a class="regloglink" href="/login">Already registered ? Click here to login</a>
             </form>
     </body>
     <footer class="footer">
