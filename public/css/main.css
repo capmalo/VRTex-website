@@ -39,6 +39,10 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
+.text-white{
+  overflow-x: visible;
+  white-space: nowrap;
+}
 .pwd-text{
   margin-top: 0.5em;
 }
@@ -67,6 +71,8 @@ hr { background-color: white; height: 1px; border: 0; }
 }
 .regloglink{
   color: #F34441;
+  overflow-x: visible;
+  white-space: nowrap;
 }
 .regloglink:hover{
   color: #FFF;

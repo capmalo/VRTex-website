@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Articles</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/css/main.css">
+	</head>
+
+	<body>
+        <div class="text-center">
+            <img class="icon" src="../public/logo/icon.png" alt="" width="120"/>
+            <h1 class='h3 mb-3 font-weight-normal text-white'>LATEST POSTS</h1>
+            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( CREATE A POST )</a>
+            <% posts.forEach(function(post){ %>
+            <hr>
+                <div class="text-white" id="post_<%= post.id %>">
+                    <h3 class='mb-3 font-weight-normal'><%= post.title %> <span class='post-date'> on <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
+                    
+                    <p><%= post.content %></p>
+
+                    <h4 class='mb-2 font-weight-normal'>Comments</h4>
+                    <% post.comments.forEach(function(comment){ %>
+                        <p><%= comment.content %></p>
+                    <% }); %>
+                <form method="post" action="/post/newcom?id=<%= post.id %>">
+                    <div class="form-group">
+                    <label>Add a comment</label>
+                    <input
+                        required
+                        name="content"
+                        id="content"
+                        type="textarea"
+                        class="form-control"
+                    />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+                <br>
+                </div>
+            <% }); %>
+        </div>
+            
+    </body>
+</html>

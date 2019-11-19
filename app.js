@@ -5,7 +5,7 @@ const path = require('path')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const User = require('./models/user.model.js')
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views-en'))
 app.set('view engine', 'ejs')
 
 app.use(express.static(__dirname))
@@ -55,7 +55,7 @@ app.listen(3000, () => {
   // readCalendar()
 })
 
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
   if (req.user) {
     res.redirect('/post/list')
     return
@@ -81,4 +81,26 @@ app.get('/register', (req, res) => {
   }
   console.log(msg)
   res.render('register', { msg: msg })
+})
+
+app.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect('/post/list')
+  }
+  let msg = ''
+  if (req.query.msg) {
+    msg = req.query.msg
+  }
+  var lang = req.acceptsLanguages('fr', 'en')
+  if (lang) {
+    if (lang === 'fr') {
+      app.set('views', path.join(__dirname, 'views-fr'))
+    } else {
+      app.set('views', path.join(__dirname, 'views-en'))
+    }
+  } else {
+    console.log('None of [fr, en] is accepted')
+  }
+  console.log(msg)
+  res.render('frontpage', { msg: msg })
 })
