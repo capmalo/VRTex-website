@@ -16,6 +16,14 @@ async function createArticle (title, content, _writer) {
   }
 }
 
+async function getArticle (id) {
+  try {
+    return Article.findById(id)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 router.get('/new', (req, res) => {
   res.render('newpost')
 })
@@ -28,12 +36,15 @@ router.get('/list', async (req, res) => {
 router.post('/new', async (req, res) => {
   const { body } = req
   await createArticle(body.post_title, body.post_content, req.user)
-  res.send('SAVED')
+  res.redirect('/post/list')
 })
 
-router.post('/newcom/:id', (req, res) => {
-  console.log(req.query.id)
-  res.send('YES')
+router.post('/newcom', async (req, res) => {
+  const { body } = req
+  const article = await getArticle(req.query.id)
+  article.comments.push({ _writer: req.user, content: body.content })
+  await article.save()
+  res.redirect('/post/list')
 })
 
 module.exports = router
