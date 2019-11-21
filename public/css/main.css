@@ -94,3 +94,8 @@ hr { background-color: white; height: 1px; border: 0; }
 .licencelink:hover{
   color: #F34441;
 }
+
+.newpost-form{
+  width: 70%;
+  max-width: 600px;
+}

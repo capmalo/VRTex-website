@@ -9,7 +9,8 @@
 	</head>
 
 	<body class="text-center">
-        <form method="post" action="/post/new">
+        <form method="post" class="newpost-form" action="/post/new">
+          <h1 class='h3 mb-3 font-weight-normal text-white'>Nouvel article</h1>
             <div class="form-group">
               <label class="text-white">Titre</label>
               <input
@@ -20,13 +21,12 @@
                 class="form-control"
               />
               <label class="text-white">Description</label>
-              <input
+              <textarea
                 required
                 name="post_content"
                 id="post_content"
-                type="textarea"
                 class="form-control"
-              />
+              ></textarea>
               
             </div>
             <button type="submit" class="btn btn-danger">Envoyer</button>

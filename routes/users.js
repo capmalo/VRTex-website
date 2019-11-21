@@ -27,6 +27,17 @@ async function getUser (username, password) {
   }
 }
 
+/* async function getUserArticles (id) {
+  try {
+    const user = await User.findOne({ username: username }).lean()
+    if (await bcrypt.compare(password, user.password)) {
+      return user
+    } else { return false }
+  } catch (err) {
+    console.log(err)
+  }
+} */
+
 router.post('/login', async (req, res) => {
   const { body } = req
   const user = await getUser(body.username, body.password)
@@ -57,10 +68,15 @@ router.post('/register', async (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.destroy()
-  if (req.user) {
-    res.send('Au revoir ' + req.user.username + '!')
+  res.redirect('/')
+})
+
+router.get('/profil', (req, res) => {
+  if (!req.user) {
+    res.redirect('/')
   } else {
-    res.send('Qui étiez-vous ?')
+    console.log(req.user.username)
+    res.render('profil', { username: req.user.username })
   }
 })
 
