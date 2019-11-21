@@ -50,13 +50,13 @@ router.post('/newcom', async (req, res) => {
 
 router.post('/upvote', async (req, res) => {
   const id = ObjectId(req.user._id)
-  const vote = await Article.findOne({
+  const article = await Article.findOne({
     $and: [
       { _id: req.query.id },
       { upvotes: { $elemMatch: { _writer: id } } }
     ]
   }).lean()
-  if (vote === null) {
+  if (article === null) {
     console.log('entre dans le if')
     article.upvotes.push({ _writer: req.session.userId })
   }
