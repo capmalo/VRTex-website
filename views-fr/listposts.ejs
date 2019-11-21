@@ -22,7 +22,14 @@
                     
                     <p class='article-content'><%= post.content %></p>
 
-                    <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
+                    <form method="post" action="/post/upvote?id=<%= post.id %>">
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Voter</button>
+
+                    </form>
+
+                    <h4 class='mb-2 font-weight-normal'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
                     <% }); %>
