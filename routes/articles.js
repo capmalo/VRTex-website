@@ -50,17 +50,21 @@ router.post('/newcom', async (req, res) => {
 
 router.post('/upvote', async (req, res) => {
   const id = ObjectId(req.user._id)
-  const article = await Article.findOne({
+  const obj = await Article.findOne({
     $and: [
       { _id: req.query.id },
       { upvotes: { $elemMatch: { _writer: id } } }
     ]
   })
-  if (article === null) {
-    console.log('entre dans le if')
+  if (obj === null) {
+    console.log('nouvel upvote')
+    const article = await getArticle(req.query.id)
     article.upvotes.push({ _writer: req.session.userId })
+    const newNbVotes = article.nbvotes + 1
+    article.update({ $set: { nbvotes: newNbVotes } })
+    console.log(newNbVotes)
+    await article.save()
   }
-  await article.save()
   res.redirect('/post/list')
 })
 

@@ -14,7 +14,8 @@ var articleSchema = new Schema({
   upvotes: [{
     _writer: { type: Schema.Types.ObjectId, ref: 'User' },
     date: { type: Date, default: Date.now }
-  }]
+  }],
+  nbvotes: { type: Number, default: 0 }
 })
 
 const Article = mongoose.model('Article', articleSchema)
