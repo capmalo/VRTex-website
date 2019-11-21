@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
   if (user) {
     req.session.userId = user._id
     if (req.query.from) { res.redirect(req.query.from) } else { res.redirect('/post/list') }
-  } else { res.redirect('/?msg=Username or password incorrect, try again') }
+  } else { res.redirect('/login?msg=Username or password incorrect, try again') }
 })
 
 router.post('/register', async (req, res) => {

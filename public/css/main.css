@@ -94,8 +94,63 @@ hr { background-color: white; height: 1px; border: 0; }
 .licencelink:hover{
   color: #F34441;
 }
-
 .newpost-form{
   width: 70%;
   max-width: 600px;
+}
+.articles{
+  color: #000 !important;
+  background-color:#FFF;
+  border-radius: 0.5em;
+  width: 60em;
+  /*text-align: left !important;*/
+}
+.article-title{
+  background-color: #F34441;
+  border: 2px solid #FF2220;
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  color: #FFF !important;
+}
+.article-content{
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  text-align: justify;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.comment-form{
+  text-align: left !important;
+}
+.comments-title{
+  text-align: left;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
+  font-size: 1.2em;
+  font-weight: 600 !important;
+  border-top: 2px solid #AAA;
+}
+.comments{
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  margin-left: 1em;
+  margin-right: 1em;
+  text-align: justify;
+}
+.comment-group{
+  text-align: left;
+  margin-left: 1em;
+}
+.comment-input{
+  max-width: 20em;
+}
+.btn-comment{
+  margin-left: 1em;
+}
+.btn-logout{
+  position: absolute !important;
+  left: 92% !important;
+  top: 2% !important;
+  color: #FFF;
+  background-color: #000;
 }
