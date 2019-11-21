@@ -25,11 +25,11 @@
                     <form method="post" action="/post/upvote?id=<%= post.id %>">
                         <div class="form-group">
                         </div>
-                        <button type="submit" class="btn btn-primary">Voter</button>
+                        <button type="submit" class="btn btn-danger btn-vote">Voter</button>
 
                     </form>
 
-                    <h4 class='mb-2 font-weight-normal'>Commentaires</h4>
+                    <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
                     <% }); %>

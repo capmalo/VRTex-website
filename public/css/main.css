@@ -103,7 +103,7 @@ hr { background-color: white; height: 1px; border: 0; }
   background-color:#FFF;
   border-radius: 0.5em;
   width: 60em;
-  /*text-align: left !important;*/
+  text-align: left;
 }
 .article-title{
   background-color: #F34441;
@@ -111,6 +111,7 @@ hr { background-color: white; height: 1px; border: 0; }
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
   color: #FFF !important;
+  text-align: center !important;
 }
 .article-content{
   white-space: normal !important;
@@ -118,6 +119,11 @@ hr { background-color: white; height: 1px; border: 0; }
   text-align: justify;
   margin-left: 1em;
   margin-right: 1em;
+}
+.btn-vote{
+  text-align: left !important;
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
 .comment-form{
   text-align: left !important;
