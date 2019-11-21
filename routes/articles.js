@@ -55,7 +55,7 @@ router.post('/upvote', async (req, res) => {
       { _id: req.query.id },
       { upvotes: { $elemMatch: { _writer: id } } }
     ]
-  }).lean()
+  })
   if (article === null) {
     console.log('entre dans le if')
     article.upvotes.push({ _writer: req.session.userId })
