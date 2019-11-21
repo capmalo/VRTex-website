@@ -59,10 +59,27 @@ router.post('/upvote', async (req, res) => {
   if (obj === null) {
     console.log('nouvel upvote')
     const article = await getArticle(req.query.id)
-    article.upvotes.push({ _writer: req.session.userId })
+    await article.upvotes.push({ _writer: req.session.userId })
     const newNbVotes = article.nbvotes + 1
-    article.update({ $set: { nbvotes: newNbVotes } })
-    console.log(newNbVotes)
+    await article.updateOne({ $set: { nbvotes: newNbVotes } })
+    await article.save()
+  }
+  res.redirect('/post/list')
+})
+
+router.post('/unvote', async (req, res) => {
+  const id = ObjectId(req.user._id)
+  const article = await Article.findOne({
+    $and: [
+      { _id: req.query.id },
+      { upvotes: { $elemMatch: { _writer: id } } }
+    ]
+  })
+  if (article != null) {
+    console.log('nouvel unvote')
+    await article.upvotes.pop({ _writer: req.session.userId })
+    const newNbVotes = article.nbvotes - 1
+    await article.updateOne({ $set: { nbvotes: newNbVotes } })
     await article.save()
   }
   res.redirect('/post/list')
