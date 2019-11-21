@@ -11,8 +11,8 @@
 	<body>
         <div class="text-center">
             <img class="icon" src="../public/logo/icon.png" alt="" width="120"/>
-            <h1 class='h3 mb-3 font-weight-normal text-white'>LATEST POSTS</h1>
-            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( CREATE A POST )</a>
+            <h1 class='h3 mb-3 font-weight-normal text-white'>DERNIERS ARTICLES</h1>
+            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( CREER UN ARTICLE )</a>
             <% posts.forEach(function(post){ %>
             <hr>
                 <div class="text-white" id="post_<%= post.id %>">
@@ -20,13 +20,20 @@
                     
                     <p><%= post.content %></p>
 
-                    <h4 class='mb-2 font-weight-normal'>Comments</h4>
+                    <form method="post" action="/post/upvote?id=<%= post.id %>">
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Voter</button>
+
+                    </form>
+
+                    <h4 class='mb-2 font-weight-normal'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>
                         <p><%= comment.content %></p>
                     <% }); %>
                 <form method="post" action="/post/newcom?id=<%= post.id %>">
                     <div class="form-group">
-                    <label>Add a comment</label>
+                    <label>Ajouter un commentaire</label>
                     <input
                         required
                         name="content"
@@ -35,7 +42,7 @@
                         class="form-control"
                     />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
 
                 </form>
                 <br>
