@@ -40,11 +40,17 @@ async function getUser (username, password) {
 
 router.post('/login', async (req, res) => {
   const { body } = req
+  var msg
   const user = await getUser(body.username, body.password)
   if (user) {
     req.session.userId = user._id
     if (req.query.from) { res.redirect(req.query.from) } else { res.redirect('/post/list') }
-  } else { res.redirect('/login?msg=Username or password incorrect, try again') }
+  } else {
+    if (req.checklang === 'fr') {
+      msg = "Nom d'utilisateur ou mot de passe incorrect, réessayez"
+    } else { msg = 'Username or password incorrect, try again' }
+    res.redirect('/login?msg=' + msg)
+  }
 })
 
 router.post('/register', async (req, res) => {
@@ -55,10 +61,14 @@ router.post('/register', async (req, res) => {
     console.log(body)
     if (user === null) {
       createUser(body.username, body.password)
-      msg = 'Your account have successfully been created ! you can now log in.'
-      res.redirect('/?msg=' + msg)
+      if (req.checklang === 'fr') {
+        msg = 'Votre compte a été créé avec succès ! vous pouvez maintenant vous connecter.'
+      } else { msg = 'Your account have successfully been created ! you can now log in.' }
+      res.redirect('/login?msg=' + msg)
     } else {
-      msg = 'Pseudo indisponible, veuillez réessayer'
+      if (req.checklang === 'fr') {
+        msg = 'Pseudo indisponible, veuillez réessayer'
+      } else { msg = 'Username unavailable, please try again' }
       res.redirect('/register?msg=' + msg)
     }
   } catch (err) {
@@ -68,12 +78,16 @@ router.post('/register', async (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.destroy()
-  res.redirect('/')
+  var msg
+  if (req.checklang === 'fr') {
+    msg = 'Déconnecté avec succès'
+  } else { msg = 'Sucessfully disconnected' }
+  res.redirect('/login?msg=' + msg)
 })
 
 router.get('/profil', (req, res) => {
   if (!req.user) {
-    res.redirect('/')
+    res.redirect('/login')
   } else {
     console.log(req.user.username)
     res.render('profil', { username: req.user.username })

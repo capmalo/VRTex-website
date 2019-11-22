@@ -19,6 +19,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.amimated-background{
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 60%, rgba(243, 68, 65, 1) 100%), url("https://upload.cat/imageviewer/4411d1ed725fda4ad02385d9e0f854b1_80472") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
 
 .form-signin {
   width: 100%;
@@ -128,7 +133,7 @@ hr { background-color: white; height: 1px; border: 0; }
   margin-left: 1em;
   padding: 0.1em !important;
 }
-.btn-votem{
+.btn-share{
   margin-left: 0.2em;
   padding: 0.1em !important;
 }

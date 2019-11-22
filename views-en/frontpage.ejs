@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="../public/css/main.css">
 	</head>
 
-	<body class="text-center">
+	<body class="text-center amimated-background">
         <!--<form method="get" class="form-signin" action="launchIntoFullscreen(document.documentElement);">-->
         <div class="form-signin">
           <img class="mb-4" src="../public/logo/logo.png" alt="" width="200">
@@ -58,13 +58,13 @@
           element.webkitRequestFullscreen();
         }else if(element.msRequestFullscreen) {
           element.msRequestFullscreen();
-        }*/
+        }
         var msg="For more convenience, press F11 to go fullscreen";
         console.log(msg)
-        alert(msg);
+        alert(msg);*/
         setTimeout(function(){
           window.location.href = "/login";
-        }, 1000);
+        }, 1);
       }
     </script>
 </html>

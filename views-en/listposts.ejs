@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-        <title>VRTex - Articles</title>
+        <title>VRTEX - Articles</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="./public/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
         <div class="text-center">
             <img class="icon" src="../public/logo/logo.png" alt="" width="120"/>
             <h1 class='h3 mb-3 font-weight-normal text-white'>LASTEST ARTICLES</h1>
-            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( add an article )</a>
+            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( Add an article )</a>
             <% posts.forEach(function(post){ %>
             <hr>
               <div class="text-white articles" id="post_<%= post.id %>">
@@ -27,11 +27,17 @@
                           </div>
                           <button type="submit" class="btn btn-danger btn-votep">+1</button>
                       </form>
-                      <form method="post" action="/post/downvote?id=<%= post.id %>">
+                      <form method="post" action="/post/share?id=<%= post.id %>">
                         <div class="form-group">
                         </div>
-                        <button type="submit" class="btn btn-danger btn-votem">share</button>
+                        <button type="submit" class="btn btn-danger btn-share">Share</button>
+
                       </form>
+                      <!--<form method="post" action="/post/unvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-vote">Retirer le vote</button>
+                      </form>-->
                     </div>
                     <h4 class='mb-2 font-weight-normal comments-title'>Comments</h4>
                     <% post.comments.forEach(function(comment){ %>

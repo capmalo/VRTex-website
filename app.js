@@ -40,6 +40,22 @@ async function tokenToUserMiddleware (req, res, next) {
 
 app.use(tokenToUserMiddleware)
 
+async function checkLanguageMiddleware (req, res, next) {
+  req.checklang = req.acceptsLanguages('fr', 'en')
+  if (req.checklang) {
+    if (req.checklang === 'fr') {
+      app.set('views', path.join(__dirname, 'views-fr'))
+    } else {
+      app.set('views', path.join(__dirname, 'views-en'))
+    }
+  } else {
+    console.log('None of [fr, en] is accepted')
+  }
+  next()
+}
+
+app.use(checkLanguageMiddleware)
+
 function onlyIfLoggedMiddleware (req, res, next) {
   if (req.user) {
     next()
@@ -90,16 +106,6 @@ app.get('/', (req, res) => {
   let msg = ''
   if (req.query.msg) {
     msg = req.query.msg
-  }
-  var lang = req.acceptsLanguages('fr', 'en')
-  if (lang) {
-    if (lang === 'fr') {
-      app.set('views', path.join(__dirname, 'views-fr'))
-    } else {
-      app.set('views', path.join(__dirname, 'views-en'))
-    }
-  } else {
-    console.log('None of [fr, en] is accepted')
   }
   console.log(msg)
   res.render('frontpage', { msg: msg })

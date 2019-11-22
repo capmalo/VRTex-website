@@ -27,20 +27,18 @@
                           </div>
                           <button type="submit" class="btn btn-danger btn-votep">+1</button>
                       </form>
-                      <form method="post" action="/post/downvote?id=<%= post.id %>">
+                      <form method="post" action="/post/share?id=<%= post.id %>">
                         <div class="form-group">
                         </div>
-                        <button type="submit" class="btn btn-danger btn-vote">Voter</button>
+                        <button type="submit" class="btn btn-danger btn-share">Partager</button>
 
-                    </form>
-
-                    <form method="post" action="/post/unvote?id=<%= post.id %>">
-                        <div class="form-group">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-vote">Retirer le vote</button>
-
-                    </form>
-
+                      </form>
+                      <!--<form method="post" action="/post/unvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-vote">Retirer le vote</button>
+                      </form>-->
+                    </div>
                     <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
