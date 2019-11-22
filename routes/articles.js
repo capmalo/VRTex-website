@@ -49,33 +49,39 @@ router.post('/newcom', async (req, res) => {
 })
 
 router.post('/upvote', async (req, res) => {
-  const article = await getArticle(req.query.id)
-  console.log(article)
-
   const id = ObjectId(req.user._id)
-
-  const test = await article.upvotes.find({ _writer: id }).lean()
-  console.log(test)
-
-  const vote = await Article.findOne({
+  const obj = await Article.findOne({
     $and: [
       { _id: req.query.id },
-      { upvotes: { _writer: id } }
+      { upvotes: { $elemMatch: { _writer: id } } }
     ]
-  }).lean()
-
-  /* const vote = await Article.findByIdAndUpdate(
-    req.query.id,
-    { arrayFilters: [{ upvotes: { _writer: id } }] }
-  ) */
-
-  console.log(vote)
-
-  if (vote === null) {
-    console.log('entre dans le if')
-    article.upvotes.push({ _writer: req.session.userId })
+  })
+  if (obj === null) {
+    console.log('nouvel upvote')
+    const article = await getArticle(req.query.id)
+    await article.upvotes.push({ _writer: req.session.userId })
+    const newNbVotes = article.nbvotes + 1
+    await article.updateOne({ $set: { nbvotes: newNbVotes } })
+    await article.save()
   }
-  await article.save()
+  res.redirect('/post/list')
+})
+
+router.post('/unvote', async (req, res) => {
+  const id = ObjectId(req.user._id)
+  const article = await Article.findOne({
+    $and: [
+      { _id: req.query.id },
+      { upvotes: { $elemMatch: { _writer: id } } }
+    ]
+  })
+  if (article != null) {
+    console.log('nouvel unvote')
+    await article.upvotes.pop({ _writer: req.session.userId })
+    const newNbVotes = article.nbvotes - 1
+    await article.updateOne({ $set: { nbvotes: newNbVotes } })
+    await article.save()
+  }
   res.redirect('/post/list')
 })
 
