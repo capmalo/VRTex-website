@@ -1,45 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-        <title>Articles</title>
+        <title>VRTex - Articles</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="./public/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../public/css/main.css">
+        
 	</head>
-
+  
 	<body>
+        <button type="button" class="btn btn-logout" onclick="window.location.href='/user/logout'">Logout</button>
         <div class="text-center">
-            <img class="icon" src="../public/logo/icon.png" alt="" width="120"/>
-            <h1 class='h3 mb-3 font-weight-normal text-white'>LATEST POSTS</h1>
-            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( CREATE A POST )</a>
+            <img class="icon" src="../public/logo/logo.png" alt="" width="120"/>
+            <h1 class='h3 mb-3 font-weight-normal text-white'>LASTEST ARTICLES</h1>
+            <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( add an article )</a>
             <% posts.forEach(function(post){ %>
             <hr>
-                <div class="text-white" id="post_<%= post.id %>">
-                    <h3 class='mb-3 font-weight-normal'><%= post.title %> <span class='post-date'> on <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
+              <div class="text-white articles" id="post_<%= post.id %>">
+                    <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
                     
-                    <p><%= post.content %></p>
-
-                    <h4 class='mb-2 font-weight-normal'>Comments</h4>
+                    <p class='article-content'><%= post.content %></p>
+                    <div class="vote-form">
+                      <form method="post" action="/post/upvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                      </form>
+                      <form method="post" action="/post/downvote?id=<%= post.id %>">
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-votem">share</button>
+                      </form>
+                    </div>
+                    <h4 class='mb-2 font-weight-normal comments-title'>Comments</h4>
                     <% post.comments.forEach(function(comment){ %>
-                        <p><%= comment.content %></p>
+                        <p class='comments'><%= comment.content %></p>
                     <% }); %>
-                <form method="post" action="/post/newcom?id=<%= post.id %>">
-                    <div class="form-group">
-                    <label>Add a comment</label>
+                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>">
+                    <div class="form-group comment-group">
+                    <label>Comment</label>
                     <input
                         required
                         name="content"
                         id="content"
                         type="textarea"
-                        class="form-control"
+                        class="form-control comment-input"
                     />
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-danger btn-comment">Send</button>
 
                 </form>
                 <br>
-                </div>
+              </div>
             <% }); %>
         </div>
             

@@ -120,10 +120,17 @@ hr { background-color: white; height: 1px; border: 0; }
   margin-left: 1em;
   margin-right: 1em;
 }
-.btn-vote{
-  text-align: left !important;
-  margin-left: 1em;
+.vote-form{
+  display: inline-flex !important;
   margin-bottom: 1em;
+}
+.btn-votep{
+  margin-left: 1em;
+  padding: 0.1em !important;
+}
+.btn-votem{
+  margin-left: 0.2em;
+  padding: 0.1em !important;
 }
 .comment-form{
   text-align: left !important;
@@ -152,6 +159,10 @@ hr { background-color: white; height: 1px; border: 0; }
 }
 .btn-comment{
   margin-left: 1em;
+}
+.article-descrip{
+  min-height: 24em;
+  min-width: 50em;
 }
 .btn-logout{
   position: absolute !important;

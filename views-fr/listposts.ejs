@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
-        <title>Articles</title>
+        <title>VRTEX - Articles</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="./public/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
@@ -21,14 +21,18 @@
                     <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
                     
                     <p class='article-content'><%= post.content %></p>
-
-                    <form method="post" action="/post/upvote?id=<%= post.id %>">
+                    <div class="vote-form">
+                      <form method="post" action="/post/upvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                      </form>
+                      <form method="post" action="/post/downvote?id=<%= post.id %>">
                         <div class="form-group">
                         </div>
-                        <button type="submit" class="btn btn-danger btn-vote">Voter</button>
-
-                    </form>
-
+                        <button type="submit" class="btn btn-danger btn-votem">partager</button>
+                      </form>
+                    </div>
                     <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
