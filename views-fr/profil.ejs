@@ -27,12 +27,57 @@
             <h1 class='h1 mb-3 font-weight-normal text-white'>Bonjour <%= username %></h1>
             <hr>
             <h3 class='h1 mb-3 font-weight-normal text-white'>Vos articles : </h3>
+            <% posts.forEach(function(post){ %>
+              <hr>
+              <div class="text-white articles" id="post_<%= post.id %>">
+                    <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
+                    
+                    <p class='article-content'><%= post.content %></p>
+                    <div class="vote-form">
+                      <form method="post" action="/post/upvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                      </form>
+                      <form method="post" action="/post/share?id=<%= post.id %>">
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-share">Partager</button>
+
+                      </form>
+                      <!--<form method="post" action="/post/unvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-vote">Retirer le vote</button>
+                      </form>-->
+                    </div>
+                    <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
+                    <% post.comments.forEach(function(comment){ %>
+                        <p class='comments'><%= comment.content %></p>
+                    <% }); %>
+                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>">
+                    <div class="form-group comment-group">
+                    <label>Commenter</label>
+                    <input
+                        required
+                        name="content"
+                        id="content"
+                        type="textarea"
+                        class="form-control comment-input"
+                    />
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-comment">Envoyer</button>
+
+                </form>
+                <br>
+              </div>
+            <% }); %>
         </div>
       <footer class="footer">
       <div class="footer-content">
         <p class="footer-text">&copy2019 VRTEX</p>
         <p class="footer-text"> - </p>
-        <a class="footer-text licencelink" target="_blank" href="https://github.com/capmalo/VRTex-website/blob/dev/LICENSE.md">MIT Licence</a>
+        <a class="footer-text licencelink" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons NC-ND</a>
       </div>
     </footer>    
   </body>

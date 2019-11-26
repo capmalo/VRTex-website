@@ -1,6 +1,7 @@
 const express = require('express')
 var router = express.Router()
 const User = require('../models/user.model.js')
+const Article = require('../models/article.model.js')
 const bcrypt = require('bcrypt')
 
 async function createUser (username, password) {
@@ -27,16 +28,14 @@ async function getUser (username, password) {
   }
 }
 
-/* async function getUserArticles (id) {
+async function getUserArticles (id) {
   try {
-    const user = await User.findOne({ username: username }).lean()
-    if (await bcrypt.compare(password, user.password)) {
-      return user
-    } else { return false }
+    const articles = await Article.find({ upvotes: { $elemMatch: { _writer: id } } })
+    return articles
   } catch (err) {
     console.log(err)
   }
-} */
+}
 
 router.post('/login', async (req, res) => {
   const { body } = req
@@ -85,12 +84,13 @@ router.get('/logout', (req, res) => {
   res.redirect('/login?msg=' + msg)
 })
 
-router.get('/profil', (req, res) => {
+router.get('/profil', async (req, res) => {
   if (!req.user) {
     res.redirect('/login')
   } else {
     console.log(req.user.username)
-    res.render('profil', { username: req.user.username })
+    const posts = await getUserArticles(req.user.id)
+    res.render('profil', { username: req.user.username, posts: posts })
   }
 })
 

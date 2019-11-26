@@ -43,7 +43,7 @@
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
                     <% }); %>
-                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>">
+                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>&from=/post/list">
                     <div class="form-group comment-group">
                     <label>Commenter</label>
                     <input

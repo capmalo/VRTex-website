@@ -45,7 +45,11 @@ router.post('/newcom', async (req, res) => {
   const article = await getArticle(req.query.id)
   article.comments.push({ _writer: req.user, content: body.content })
   await article.save()
-  res.redirect('/post/list')
+  if (req.query.from) {
+    res.redirect(req.query.from)
+  } else {
+    res.redirect('/post/list')
+  }
 })
 
 router.post('/upvote', async (req, res) => {
