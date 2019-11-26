@@ -10,8 +10,9 @@
 	</head>
   
 	<body>
+        <button type="button" class="btn btn-profile" onclick="window.location.href='/user/profil'">Profil</button>
         <button type="button" class="btn btn-logout" onclick="window.location.href='/user/logout'">Déconnexion</button>
-        <div class="text-center">
+        <div class="text-center post-list">
             <img class="icon" src="../public/logo/logo.png" alt="" width="120"/>
             <h1 class='h3 mb-3 font-weight-normal text-white'>Derniers articles</h1>
             <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( Poster un article )</a>
@@ -43,7 +44,7 @@
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
                     <% }); %>
-                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>">
+                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>&from=/post/list">
                     <div class="form-group comment-group">
                     <label>Commenter</label>
                     <input
