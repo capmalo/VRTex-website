@@ -23,7 +23,9 @@
 	</head>
 
 	<body>
-        <div class="text-center">
+      <button type="button" class="btn btn-profile" onclick="window.location.href='/post/list'">Liste des articles</button>
+      <button type="button" class="btn btn-logout" onclick="window.location.href='/user/logout'">Déconnexion</button>
+        <div class="text-center post-list">
             <h1 class='h1 mb-3 font-weight-normal text-white'>Bonjour <%= username %></h1>
             <hr>
             <h3 class='h1 mb-3 font-weight-normal text-white'>Vos articles : </h3>
@@ -55,7 +57,7 @@
                     <% post.comments.forEach(function(comment){ %>
                         <p class='comments'><%= comment.content %></p>
                     <% }); %>
-                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>">
+                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>&from=/user/profil">
                     <div class="form-group comment-group">
                     <label>Commenter</label>
                     <input

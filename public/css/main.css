@@ -6,7 +6,8 @@ body {
 body {
   display: -ms-flexbox;
   display: -webkit-box;
-  display: flex;
+  display: inline-block;
+  width: 100%;
   -ms-flex-align: center;
   -ms-flex-pack: center;
   -webkit-box-align: center;
@@ -18,6 +19,7 @@ body {
   background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 60%, rgba(243, 68, 65, 1) 100%), url(../logo/background_quest.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 .amimated-background{
   /*background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 60%, rgba(243, 68, 65, 0.95) 100%), url("https://upload.cat/imageviewer/4411d1ed725fda4ad02385d9e0f854b1_80472") !important;*/
@@ -46,7 +48,11 @@ video#bgvid {
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -102,6 +108,12 @@ hr { background-color: white; height: 1px; border: 0; }
 .footer{
   position: fixed;
   bottom: 0;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .footer-content{
   margin: auto;
@@ -124,8 +136,9 @@ hr { background-color: white; height: 1px; border: 0; }
   color: #000 !important;
   background-color:#FFF;
   border-radius: 0.5em;
-  width: 60em;
+  /*width: 60em;*/
   text-align: left;
+  align-self: center;
 }
 .article-title{
   background-color: #F34441;
@@ -187,9 +200,25 @@ hr { background-color: white; height: 1px; border: 0; }
   min-width: 50em;
 }
 .btn-logout{
-  position: absolute !important;
-  left: 92% !important;
+  position: fixed !important;
+  left: 90% !important;
   top: 2% !important;
   color: #FFF;
   background-color: #000;
+}
+
+.btn-profile{
+  position: fixed !important;
+  left: 2% !important;
+  top: 2% !important;
+  color: #FFF;
+  background-color: #000;
+}
+
+.post-list{
+  width: 85%;
+  max-width: 800px;
+  position: relative;
+  align-self: center;
+  margin: 0 auto;
 }
