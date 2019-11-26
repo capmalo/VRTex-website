@@ -15,7 +15,7 @@ const articles = require('./routes/articles.js')
 
 // let calendar
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/VRtexDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
+mongoose.connect('mongodb+srv://VRtex:gWjkShwEKucjaQ2v@cluster0-tqntu.mongodb.net/VRtexDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
   if (error) console.log(error)
 
   console.log('connection successful')
