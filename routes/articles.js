@@ -1,5 +1,6 @@
 const express = require('express')
 var router = express.Router()
+const User = require('../models/user.model.js')
 const Article = require('../models/article.model.js')
 const { ObjectId } = require('mongodb')
 
@@ -25,13 +26,21 @@ async function getArticle (id) {
   }
 }
 
+async function getUser (userId) {
+  try {
+    return User.findById(userId)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 router.get('/new', (req, res) => {
   res.render('newpost')
 })
 
 router.get('/list', async (req, res) => {
   const posts = await Article.find().sort({ date: 1 })
-  res.render('listposts', { posts: posts })
+  res.render('listposts', { posts: posts, votes: await getUser(req.user.id).votes })
 })
 
 router.post('/new', async (req, res) => {
@@ -53,7 +62,7 @@ router.post('/newcom', async (req, res) => {
 })
 
 router.post('/upvote', async (req, res) => {
-  const id = ObjectId(req.user._id)
+  const id = ObjectId(req.user.id)
   const obj = await Article.findOne({
     $and: [
       { _id: req.query.id },
@@ -64,6 +73,11 @@ router.post('/upvote', async (req, res) => {
     console.log('nouvel upvote')
     const article = await getArticle(req.query.id)
     await article.upvotes.push({ _writer: req.session.userId })
+
+    const user = await getUser(req.user.id)
+    await user.votes.push({ _article: article._id })
+    await user.save()
+
     const newNbVotes = article.nbvotes + 1
     await article.updateOne({ $set: { nbvotes: newNbVotes } })
     await article.save()
@@ -72,7 +86,7 @@ router.post('/upvote', async (req, res) => {
 })
 
 router.post('/unvote', async (req, res) => {
-  const id = ObjectId(req.user._id)
+  const id = ObjectId(req.user.id)
   const article = await Article.findOne({
     $and: [
       { _id: req.query.id },
@@ -82,6 +96,11 @@ router.post('/unvote', async (req, res) => {
   if (article != null) {
     console.log('nouvel unvote')
     await article.upvotes.pop({ _writer: req.session.userId })
+
+    const user = await getUser(req.user.id)
+    await user.votes.pop({ _article: article._id })
+    await user.save()
+
     const newNbVotes = article.nbvotes - 1
     await article.updateOne({ $set: { nbvotes: newNbVotes } })
     await article.save()
