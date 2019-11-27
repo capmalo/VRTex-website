@@ -30,8 +30,17 @@ async function getUser (username, password) {
 
 async function getUserArticles (id) {
   try {
-    const articles = await Article.find({ upvotes: { $elemMatch: { _writer: id } } })
+    const articles = await Article.find({ _writer: { _writer: id } })
     return articles
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function getUserVotes (userId) {
+  try {
+    const user = await User.findOne({ username: userId })
+    return user.votes
   } catch (err) {
     console.log(err)
   }
