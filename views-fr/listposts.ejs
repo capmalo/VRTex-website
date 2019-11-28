@@ -22,11 +22,17 @@
                     <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
                     
                     <p class='article-content'><%= post.content %></p>
+                    <p class='article-votes'><%= post.nbvotes %> vote<% if (post.nbvotes > 1) { %>s<% } %></p>
                     <div class="vote-form">
                       <form method="post" action="/post/upvote?id=<%= post.id %>">
-                          <div class="form-group">
-                          </div>
-                          <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                      </form>
+                      <form method="post" action="/post/unvote?id=<%= post.id %>">
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-votem">Retirer le vote</button>
                       </form>
                       <form method="post" action="/post/share?id=<%= post.id %>">
                         <div class="form-group">
@@ -34,11 +40,6 @@
                         <button type="submit" class="btn btn-danger btn-share">Partager</button>
 
                       </form>
-                      <!--<form method="post" action="/post/unvote?id=<%= post.id %>">
-                          <div class="form-group">
-                          </div>
-                          <button type="submit" class="btn btn-danger btn-vote">Retirer le vote</button>
-                      </form>-->
                     </div>
                     <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
                     <% post.comments.forEach(function(comment){ %>

@@ -155,11 +155,22 @@ hr { background-color: white; height: 1px; border: 0; }
   margin-left: 1em;
   margin-right: 1em;
 }
+.article-votes{
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  text-align: justify;
+  margin-left: 1em;
+  margin-right: 1em;
+}
 .vote-form{
   display: inline-flex !important;
   margin-bottom: 1em;
 }
 .btn-votep{
+  margin-left: 1em;
+  padding: 0.1em !important;
+}
+.btn-votem{
   margin-left: 1em;
   padding: 0.1em !important;
 }
