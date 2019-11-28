@@ -40,7 +40,8 @@ router.get('/new', (req, res) => {
 
 router.get('/list', async (req, res) => {
   const posts = await Article.find().sort({ date: 1 })
-  res.render('listposts', { posts: posts, votes: await getUser(req.user.id).votes })
+  const votes = (await getUser(req.user.id)).votes
+  res.render('listposts', { posts: posts, votes: votes })
 })
 
 router.post('/new', async (req, res) => {
