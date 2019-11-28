@@ -10,8 +10,9 @@
 	</head>
   
 	<body>
+        <button type="button" class="btn btn-profile" onclick="window.location.href='/user/profil'">Profil</button>
         <button type="button" class="btn btn-logout" onclick="window.location.href='/user/logout'">Déconnexion</button>
-        <div class="text-center">
+        <div class="text-center post-list">
             <img class="icon" src="../public/logo/logo.png" alt="" width="120"/>
             <h1 class='h3 mb-3 font-weight-normal text-white'>Derniers articles</h1>
             <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( Poster un article )</a>
@@ -60,7 +61,13 @@
                 <br>
               </div>
             <% }); %>
-        </div>
-            
+        </div>    
     </body>
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-text">&copy2019 VRTEX</p>
+        <p class="footer-text"> - </p>
+        <a class="footer-text licencelink" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons NC-ND</a>
+      </div>
+    </footer>
 </html>
