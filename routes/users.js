@@ -30,7 +30,7 @@ async function getUser (username, password) {
 
 async function getUserArticles (id) {
   try {
-    const articles = await Article.find({ _writer: { _writer: id } })
+    const articles = await Article.find({ _writer: id })
     return articles
   } catch (err) {
     console.log(err)
@@ -95,9 +95,8 @@ router.get('/logout', (req, res) => {
 
 router.get('/profil', async (req, res) => {
   if (!req.user) {
-    res.redirect('/login')
+    res.redirect('/login?from=/user/profil')
   } else {
-    console.log(req.user.username)
     const posts = await getUserArticles(req.user.id)
     res.render('profil', { username: req.user.username, posts: posts })
   }

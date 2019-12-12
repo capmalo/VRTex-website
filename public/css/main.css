@@ -131,6 +131,7 @@ hr { background-color: white; height: 1px; border: 0; }
 .newpost-form{
   width: 70%;
   max-width: 600px;
+  display: inline-block;
 }
 .articles{
   color: #000 !important;

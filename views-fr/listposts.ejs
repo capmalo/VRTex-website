@@ -16,56 +16,58 @@
             <img class="icon" src="../public/logo/logo.png" alt="" width="120"/>
             <h1 class='h3 mb-3 font-weight-normal text-white'>Derniers articles</h1>
             <a class='h5 mb-3 font-weight-normal text-white' href="/post/new">( Poster un article )</a>
-            <% posts.forEach(function(post){ %>
-            <hr>
-              <div class="text-white articles" id="post_<%= post.id %>">
-                    <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
-                    
-                    <p class='article-content'><%= post.content %></p>
-                    <p class='article-votes'><%= post.nbvotes %> vote<% if (post.nbvotes > 1) { %>s<% } %></p>
-                    <div class="vote-form">
-                      <% const postVoteTest = votes.find((vote) => String(vote._article) === post.id ) %>
-                      <% if (!postVoteTest) { %>
-                      <form method="post" action="/post/upvote?id=<%= post.id %>">
-                        <div class="form-group">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-votep">+1</button>
-                      </form>
-                      <% } else { %>
-                      <form method="post" action="/post/unvote?id=<%= post.id %>">
-                        <div class="form-group">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-votem">Retirer le vote</button>
-                      </form>
-                      <% } %>
-                      <form method="post" action="/post/share?id=<%= post.id %>">
-                        <div class="form-group">
-                        </div>
-                        <button type="submit" class="btn btn-danger btn-share">Partager</button>
+            <% if(posts){ %>
+              <% posts.forEach(function(post){ %>
+              <hr>
+                <div class="text-white articles" id="post_<%= post.id %>">
+                      <h3 class='mb-3 font-weight-normal article-title'><%= post.title %> <span class='post-date'> le <%= post.date.toLocaleDateString('fr-FR')  %></span></h3>
+                      
+                      <p class='article-content'><%= post.content %></p>
+                      <p class='article-votes'><%= post.nbvotes %> vote<% if (post.nbvotes > 1) { %>s<% } %></p>
+                      <div class="vote-form">
+                        <% const postVoteTest = votes.find((vote) => String(vote._article) === post.id ) %>
+                        <% if (!postVoteTest) { %>
+                        <form method="post" action="/post/upvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-votep">+1</button>
+                        </form>
+                        <% } else { %>
+                        <form method="post" action="/post/unvote?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-votem">Retirer le vote</button>
+                        </form>
+                        <% } %>
+                        <form method="post" action="/post/share?id=<%= post.id %>">
+                          <div class="form-group">
+                          </div>
+                          <button type="submit" class="btn btn-danger btn-share">Partager</button>
 
-                      </form>
-                    </div>
-                    <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
-                    <% post.comments.forEach(function(comment){ %>
-                        <p class='comments'><%= comment.content %></p>
-                    <% }); %>
-                <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>&from=/post/list">
-                    <div class="form-group comment-group">
-                    <label>Commenter</label>
-                    <input
-                        required
-                        name="content"
-                        id="content"
-                        type="textarea"
-                        class="form-control comment-input"
-                    />
-                    </div>
-                    <button type="submit" class="btn btn-danger btn-comment">Envoyer</button>
+                        </form>
+                      </div>
+                      <h4 class='mb-2 font-weight-normal comments-title'>Commentaires</h4>
+                      <% post.comments.forEach(function(comment){ %>
+                          <p class='comments'><%= comment.content %></p>
+                      <% }); %>
+                  <form class="comment-form" method="post" action="/post/newcom?id=<%= post.id %>&from=/post/list">
+                      <div class="form-group comment-group">
+                      <label>Commenter</label>
+                      <input
+                          required
+                          name="content"
+                          id="content"
+                          type="textarea"
+                          class="form-control comment-input"
+                      />
+                      </div>
+                      <button type="submit" class="btn btn-danger btn-comment">Envoyer</button>
 
-                </form>
-                <br>
-              </div>
-            <% }); %>
+                  </form>
+                  <br>
+                </div>
+              <% }); %>
+            <% } %>
         </div>    
     </body>
     <footer class="footer">

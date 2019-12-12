@@ -15,7 +15,7 @@ const articles = require('./routes/articles.js')
 
 // let calendar
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://VRtex:gWjkShwEKucjaQ2v@cluster0-tqntu.mongodb.net/VRtexDB', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
+mongoose.connect('mongodb+srv://admin:mJRxh0duOmhGF7SH@cluster0-tqntu.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, function (error) {
   if (error) console.log(error)
 
   console.log('connection successful')
@@ -60,7 +60,7 @@ function onlyIfLoggedMiddleware (req, res, next) {
   if (req.user) {
     next()
   } else {
-    res.redirect('/?from=' + req.originalUrl)
+    res.redirect('/login?from=' + req.originalUrl)
   }
 }
 
